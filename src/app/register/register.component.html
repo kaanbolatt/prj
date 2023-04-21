@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-card-content>
+    <form #loginForm="ngForm">
+      <h2>Kayıt Ol</h2>
+      <mat-form-field>
+        <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
+        <mat-error>
+          Lütfen geçerli bir mail adresi girin.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Şifre" [(ngModel)]="password" name="password" required>
+        <mat-error>
+          Lütfen geçerli bir şifre girin.
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid" (click)="onSubmit()">Hesap
+        Oluştur</button>
+      <button mat-raised-button color="primary" (click)="gotoLogin()" style="margin-left: 5px;">Zaten Hesabın var
+        mı?</button>
+    </form>
+  </mat-card-content>
+</mat-card>

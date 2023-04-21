@@ -1,0 +1,55 @@
+<div class="container"
+  style="background-color: white;  box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2); max-width: 90%;">
+  <div class="main-content">
+    <h3>Ürün Listesi</h3>
+    <div class="container-fluid">
+      <div class="row" style="margin-top: 2%;">
+        <mat-form-field style="max-width: 200px;">
+          <mat-label>Kategoriler</mat-label>
+          <mat-select class="custom-panel">
+            <mat-option [value]="categorie.id" *ngFor="let categorie of categories"
+              (click)="getProductsFiltered(categorie.id)">{{categorie.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="navbar-form" style="max-width: 300px;">
+          <div class="input-group no-border" style="margin-top: 15px; margin-left: 50px">
+            <input [(ngModel)]="textSearch" type="text" value="" class="form-control" placeholder="Ürün Ara...">
+            <button (click)="findProduct()" mat-raised-button type="submit"
+              class="btn btn-white btn-round btn-just-icon">
+              <i class="material-icons" style="    background-color: red;
+              color: white;">search</i>
+              <div class="ripple-container"></div>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="row">
+        <mat-card class="example-card mr-5" *ngFor="let product of products"
+          style="background-color: white;  box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);">
+          <mat-card-header style="min-width: 400px; ">
+            <mat-card-title style="min-height: 100px;">{{product.name}}</mat-card-title>
+            <mat-card-subtitle>{{product.shortDescription}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image width="300px" height="300px"
+            style="max-width: 300px; min-width: 300px; max-height: 300px; min-height: 300px;" [src]="product.image"
+            [alt]="product.name">
+          <mat-card-content class="prod-price">
+            <p>
+              {{product.price | currency:'TRY':'symbol-narrow':'1.2-2'}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions style="text-align: center;">
+            <button mat-raised-button color="primary" (click)="gotoDetail(product.id)">Detay</button>
+            <button mat-raised-button color="warn" (click)="addBasket(product.id)"><i
+                class="material-icons">add_shopping_cart</i> Sepete Ekle</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,40 @@
+<mat-toolbar>
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title">{{dialogtitle}}</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<form name="categoryForm" [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content newgenPerfectScrollbar>
+        <div fxLayout="row" fxLayoutGap="5px" class="mt-20">
+            <!--Antenna Name-->
+            <div fxFlex="50" fxLayout.xs="column" fxLayoutGap="4px">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Kategori Adı</mat-label>
+                    <input matInput formControlName="name">
+                    <mat-error>
+                        Kategori Adı zorunludur..
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="end center">
+            <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+                <button mat-stroked-button color="warn" (click)="onClose()" aria-label="Close dialog">
+                    <span>İptal</span>
+                </button>
+                <button *ngIf="action === actionTypesEnum.New" mat-stroked-button color="primary"
+                    (click)="matDialogRef.close(['add',categoryForm])" type="submit" [disabled]="categoryForm.invalid">
+                    <span>
+                        Ekle
+                    </span>
+                </button>
+                <button *ngIf="action === actionTypesEnum.Edit" mat-stroked-button color="primary"
+                    (click)="matDialogRef.close(['save',categoryForm])" type="submit" [disabled]="categoryForm.invalid">
+                    <span> Güncelle </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

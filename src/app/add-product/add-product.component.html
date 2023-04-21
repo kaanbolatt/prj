@@ -1,0 +1,98 @@
+<mat-toolbar>
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title">{{dialogtitle}}</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<form name="productForm" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content newgenPerfectScrollbar>
+        <div fxLayout="row" fxLayoutGap="5px" class="mt-20">
+            <!--Antenna Name-->
+            <div fxFlex="50" fxLayout.xs="column" fxLayoutGap="4px">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Ürün Adı</mat-label>
+                    <input matInput formControlName="name">
+                    <mat-error>
+                        Ürün Adı zorunludur..
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <!--Ground station-->
+            <div fxFlex="50" fxLayoutGap="4px">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Kategori</mat-label>
+                    <mat-select name="categoryId" formControlName="categoryId">
+                        <mat-option *ngFor="let categorie of categories" [value]="categorie.id">
+                            {{ categorie.name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error>
+                        Kategori zorunludur..
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="5px">
+            <!--Latitude-->
+            <div fxFlex="50" fxLayout.xs="column" fxLayoutGap="4px">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Fiyat</mat-label>
+                    <input matInput type="number" formControlName="price">
+                    <mat-error>
+                        Fiyat zorunludur..
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <!--Longitude-->
+            <div fxFlex="50" fxLayoutGap="4px">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Ürün Açıklaması</mat-label>
+                    <input matInput formControlName="detail">
+                    <mat-error>
+                        Ürün Açıklaması zorunludur..
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="5px">
+            <!--Altitude-->
+            <div fxFlex="50" fxLayoutGap="4px">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Ürün Kısa Açıklaması</mat-label>
+                    <input matInput formControlName="shortDescription">
+                    <mat-error>
+                        Ürün Kısa Açıklaması zorunludur..
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <!--Elevation Time-->
+            <div fxFlex="50" fxLayoutGap="4px">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>Resim Linki</mat-label>
+                    <input matInput formControlName="image">
+                    <mat-error>
+                        Resim Linki zorunludur..
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="end center">
+            <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+                <button mat-stroked-button color="warn" (click)="onClose()" aria-label="Close dialog">
+                    <span>İptal</span>
+                </button>
+                <button *ngIf="action === actionTypesEnum.New" mat-stroked-button color="primary"
+                    (click)="matDialogRef.close(['add',productForm])" type="submit" [disabled]="productForm.invalid">
+                    <span>
+                        Ekle
+                    </span>
+                </button>
+                <button *ngIf="action === actionTypesEnum.Edit" mat-stroked-button color="primary"
+                    (click)="matDialogRef.close(['save',productForm])" type="submit" [disabled]="productForm.invalid">
+                    <span> Güncelle </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

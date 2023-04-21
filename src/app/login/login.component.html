@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-content>
+    <form #loginForm="ngForm">
+      <h2>Giriş Yap</h2>
+      <mat-error *ngIf="!loginValid">
+        Kullanıcı adı ve şifre geçersiz.
+      </mat-error>
+      <mat-form-field>
+        <input matInput placeholder="Email" [(ngModel)]="email" name="email" required>
+        <mat-error>
+          Lütfen geçerli bir mail adresi girin.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Şifre" [(ngModel)]="password" name="password" required>
+        <mat-error>
+          Lütfen geçerli bir şifre girin.
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid" (click)="onSubmit()">Giriş
+        Yap</button>
+      <button mat-raised-button color="primary" (click)="register()" style="margin-left: 15px;">Hesap Oluştur</button>
+    </form>
+  </mat-card-content>
+</mat-card>

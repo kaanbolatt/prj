@@ -1,0 +1,30 @@
+<mat-toolbar matDialogTitle class="m-0 mat-accent">
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+        <h1 matDialogTitle class="mb-0">{{title}}</h1>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-dialog-content>
+    <p> {{subTitle}} </p>
+    <p> {{confirmMessage}} </p>
+    <ng-container *ngIf="applyConfirmationRule">
+        <p> {{persistMessage}} </p>
+        <p>{{toConfirmationMessage}}</p>
+        <form name="confirmationForm" [formGroup]="confirmationForm">
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="4px">
+                <mat-form-field appearance="outline" fxFlex="100">
+                    <mat-label>{{nameLabel }}</mat-label>
+                    <input matInput formControlName="name" (keyup)="onKey($event)">
+                    <mat-error>
+                        Girdiğiniz isim eşleşmiyor.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </form>
+    </ng-container>
+</mat-dialog-content>
+<mat-dialog-actions style="float: right;" class="mt-12">
+    <button mat-stroked-button color="primary" [disabled]="commitMessage && !message"
+        (click)="dialogRef.close(false)">İptal</button>
+    <button mat-stroked-button color="warn" class="mr-16" [disabled]="disableButton"
+        (click)="dialogRef.close({result: true, commitMessage: message})">Sil</button>
+</mat-dialog-actions>

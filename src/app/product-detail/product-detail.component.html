@@ -1,0 +1,22 @@
+<div class="container">
+  <mat-card
+    style="height: 600px; background-color: white; box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);">
+    <mat-card-header style="place-content: center">
+      <mat-card-title>{{ product?.name }}</mat-card-title>
+      <mat-card-subtitle>{{ product?.shortDescription }}</mat-card-subtitle>
+    </mat-card-header>
+    <img width="350px" height="350px" style="margin: 0 -16px 16px -16px; overflow: hidden" [src]="product?.image"
+      [alt]="product?.name" />
+    <mat-card-content>
+      <p>{{ product?.detail }}</p>
+      <span class="prod-price">{{ product?.price | currency:'TRY':'symbol-narrow':'1.2-2' }}</span>
+    </mat-card-content>
+    <mat-card-footer>
+      <button mat-raised-button (click)="addBasket(product?.id)" color="warn">
+
+        <i class="material-icons">add_shopping_cart</i> Sepete Ekle
+
+      </button>
+    </mat-card-footer>
+  </mat-card>
+</div>

@@ -1,0 +1,21 @@
+.example-card {
+  max-width: 400px;
+  margin-bottom: 8px;
+}
+
+.mat-card {
+  box-shadow: none !important;
+}
+
+.prod-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #001d48;
+}
+
+.prod-price2 {
+  font-size: 20px;
+  font-weight: 700;
+  float: right;
+  color: #001d48;
+}
