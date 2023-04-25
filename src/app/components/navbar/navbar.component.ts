@@ -45,6 +45,7 @@ export class NavbarComponent implements OnInit {
                 this.totalPrice = 0;
                 this.getAllBasketItem();
                 this.commonService.basketItemSubscription.subscribe((res) => {
+                    this.totalPrice = 0;
                     this.baskets = res;
                     this.baskets.forEach(element => {
                         this.totalPrice += element.productPrice;
@@ -60,6 +61,7 @@ export class NavbarComponent implements OnInit {
             this.baskets = res;
             this.baskets.forEach(element => {
                 this.totalPrice += element.productPrice;
+                console.log("🚀 ~ file: navbar.component.ts:63 ~ NavbarComponent ~ this.commonService.getAllBasketItem ~ this.totalPrice:", this.totalPrice)
             });
         })
     }

@@ -35,7 +35,6 @@ export class CategoryListAdminComponent implements OnInit {
   getAllCategories() {
     this.commonService.getAllCategories().subscribe((res) => {
       this.categories = res;
-      this.categories.splice(0, 1);
       this.dataSource = new MatTableDataSource(this.categories);
     })
   }
